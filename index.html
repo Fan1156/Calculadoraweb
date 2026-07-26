@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora Científica</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Calculadora Científica</h1>
+    </header>
+
+    <section id="intro">
+        <p>
+            Esta calculadora fue diseñada para ayudar a estudiantes, profesionales y cualquier persona 
+            que necesite realizar operaciones matemáticas rápidas y confiables. Con un diseño inspirado 
+            en las calculadoras modernas de los móviles, ofrece funciones básicas y científicas en un 
+            entorno limpio y profesional. Aquí podrás sumar, restar, multiplicar, dividir y también 
+            realizar cálculos más avanzados como raíces cuadradas, potencias y porcentajes. 
+        </p>
+    </section>
+
+    <section id="calculadora">
+        <div class="pantalla" id="pantalla">0</div>
+        <div class="teclado">
+            <button onclick="limpiar()">C</button>
+            <button onclick="borrar()">⌫</button>
+            <button onclick="operar('%')">%</button>
+            <button onclick="operar('/')">÷</button>
+
+            <button onclick="agregar('7')">7</button>
+            <button onclick="agregar('8')">8</button>
+            <button onclick="agregar('9')">9</button>
+            <button onclick="operar('*')">×</button>
+
+            <button onclick="agregar('4')">4</button>
+            <button onclick="agregar('5')">5</button>
+            <button onclick="agregar('6')">6</button>
+            <button onclick="operar('-')">−</button>
+
+            <button onclick="agregar('1')">1</button>
+            <button onclick="agregar('2')">2</button>
+            <button onclick="agregar('3')">3</button>
+            <button onclick="operar('+')">+</button>
+
+            <button onclick="agregar('0')">0</button>
+            <button onclick="agregar('.')">.</button>
+            <button onclick="operar('^')">x²</button>
+            <button onclick="calcular()">=</button>
+
+            <button onclick="operar('√')">√</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Calculadora Científica</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
