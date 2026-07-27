@@ -1,61 +1,174 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Calculadora Científica</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Calculadora Minimalista</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #eceff1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 40px 20px;
+      gap: 30px;
+    }
+
+    .intro {
+      max-width: 600px;
+      text-align: justify;
+      color: #333;
+      font-size: 16px;
+      line-height: 1.6;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    #calculadora {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 24px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+      width: 360px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .pantalla {
+      background: #212121;
+      color: #00e676;
+      font-size: 40px;
+      padding: 20px;
+      border-radius: 16px;
+      text-align: right;
+      font-family: 'Courier New', monospace;
+      box-shadow: inset 0 0 12px rgba(0,230,118,0.5);
+    }
+
+    .teclado {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    button {
+      padding: 22px;
+      font-size: 22px;
+      background: #f5f5f5;
+      color: #333;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.1s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    button:hover {
+      background: #e0e0e0;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    button.operacion {
+      background: #2196f3;
+      color: #fff;
+    }
+
+    button.operacion:hover {
+      background: #1976d2;
+    }
+
+    button.especial {
+      background: #ff9800;
+      color: #fff;
+    }
+
+    button.especial:hover {
+      background: #e67e22;
+    }
+
+    button.igual {
+      background: #4caf50;
+      color: #fff;
+      grid-column: span 2;
+    }
+
+    button.igual:hover {
+      background: #388e3c;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Calculadora Científica</h1>
-    </header>
+  <div class="intro">
+    <h1>Calculadora Web Minimalista</h1>
+    <p>
+      Esta calculadora digital fue creada para ofrecer una experiencia simple, rápida y profesional. 
+      Con ella podés realizar operaciones matemáticas básicas como suma, resta, multiplicación y división, 
+      además de manejar paréntesis y decimales. Su diseño minimalista está pensado para estudiantes, 
+      docentes y cualquier persona que necesite resolver cálculos al instante sin complicaciones. 
+      La interfaz limpia y moderna hace que se sienta como una aplicación de celular, 
+      lista para usar en cualquier dispositivo.
+    </p>
+  </div>
 
-    <section id="intro">
-        <p>
-            Esta calculadora fue diseñada para ayudar a estudiantes, profesionales y cualquier persona 
-            que necesite realizar operaciones matemáticas rápidas y confiables. Con un diseño inspirado 
-            en las calculadoras modernas de los móviles, ofrece funciones básicas y científicas en un 
-            entorno limpio y profesional. Aquí podrás sumar, restar, multiplicar, dividir y también 
-            realizar cálculos más avanzados como raíces cuadradas, potencias y porcentajes. 
-        </p>
-    </section>
+  <div id="calculadora">
+    <div class="pantalla" id="pantalla">0</div>
+    <div class="teclado">
+      <button class="especial" onclick="limpiar()">C</button>
+      <button onclick="insertar('(')">(</button>
+      <button onclick="insertar(')')">)</button>
+      <button class="operacion" onclick="insertar('/')">÷</button>
 
-    <section id="calculadora">
-        <div class="pantalla" id="pantalla">0</div>
-        <div class="teclado">
-            <button onclick="limpiar()">C</button>
-            <button onclick="borrar()">⌫</button>
-            <button onclick="operar('%')">%</button>
-            <button onclick="operar('/')">÷</button>
+      <button onclick="insertar('7')">7</button>
+      <button onclick="insertar('8')">8</button>
+      <button onclick="insertar('9')">9</button>
+      <button class="operacion" onclick="insertar('*')">×</button>
 
-            <button onclick="agregar('7')">7</button>
-            <button onclick="agregar('8')">8</button>
-            <button onclick="agregar('9')">9</button>
-            <button onclick="operar('*')">×</button>
+      <button onclick="insertar('4')">4</button>
+      <button onclick="insertar('5')">5</button>
+      <button onclick="insertar('6')">6</button>
+      <button class="operacion" onclick="insertar('-')">−</button>
 
-            <button onclick="agregar('4')">4</button>
-            <button onclick="agregar('5')">5</button>
-            <button onclick="agregar('6')">6</button>
-            <button onclick="operar('-')">−</button>
+      <button onclick="insertar('1')">1</button>
+      <button onclick="insertar('2')">2</button>
+      <button onclick="insertar('3')">3</button>
+      <button class="operacion" onclick="insertar('+')">+</button>
 
-            <button onclick="agregar('1')">1</button>
-            <button onclick="agregar('2')">2</button>
-            <button onclick="agregar('3')">3</button>
-            <button onclick="operar('+')">+</button>
+      <button onclick="insertar('0')">0</button>
+      <button onclick="insertar('.')">.</button>
+      <button class="igual" onclick="calcular()">=</button>
+    </div>
+  </div>
 
-            <button onclick="agregar('0')">0</button>
-            <button onclick="agregar('.')">.</button>
-            <button onclick="operar('^')">x²</button>
-            <button onclick="calcular()">=</button>
+  <script>
+    let pantalla = document.getElementById("pantalla");
 
-            <button onclick="operar('√')">√</button>
-        </div>
-    </section>
+    function insertar(valor) {
+      if (pantalla.textContent === "0" || pantalla.textContent === "Error") {
+        pantalla.textContent = valor;
+      } else {
+        pantalla.textContent += valor;
+      }
+    }
 
-    <footer>
-        <p>&copy; 2026 Calculadora Científica</p>
-    </footer>
+    function limpiar() {
+      pantalla.textContent = "0";
+    }
 
-    <script src="script.js"></script>
+    function calcular() {
+      try {
+        pantalla.textContent = eval(pantalla.textContent);
+      } catch {
+        pantalla.textContent = "Error";
+      }
+    }
+  </script>
 </body>
 </html>
